@@ -4,24 +4,20 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import router from './src/routes/index.js';
 
-
 dotenv.config();
 const app = express();
 connectDB();
 
-const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-
-
-
+// test route
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
+
+// dùng routes
 app.use('/api', router);
 
-
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+// xuất app cho Vercel (không dùng app.listen)
+export default app;
